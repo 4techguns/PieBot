@@ -7,7 +7,7 @@ import java.util.*
 
 class PropsManager {
     companion object {
-        fun GetProps(resource: String): Properties {
+        fun getProps(resource: String): Properties {
             val rsrc = javaClass.getResource(resource);
             val loadedFile: InputStream = ByteArrayInputStream(rsrc.readBytes());
 
