@@ -34,16 +34,13 @@ class Pie {
 
             when (it.reactionEmote.emoji)
             {
-                "❤" -> {
-                    it.retrieveMessage()
-                        .queue {m ->
-                            m.reactions.find { it.reactionEmote.emoji == "❤" }!!.retrieveUsers()
-                                .queue {
-                                        r ->
+                "❤" -> { it.retrieveMessage().queue {m ->
+                            m.reactions.find { it.reactionEmote.emoji == "❤" }!!.retrieveUsers().queue { r ->
                                     if (r.size > 10) {
                                         m.channel.sendMessage("${m.author.asMention}, you have successfully ratioed ${m.referencedMessage!!.author.asMention}")
-                                            .queue()
-                                        m.delete().queue()
+                                            .queue {fm ->
+                                                fm.delete().queue()
+                                            }
 
                                     }
 
