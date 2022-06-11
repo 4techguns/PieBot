@@ -15,8 +15,8 @@ import java.util.*
 fun main(args: Array<String>) {
     var r: MutableSet<String> = mutableSetOf()
 
-    val shhhhhhhhhhhhhhhhhhhhhhhhhh: Properties = PropsManager.GetProps("/conf/bot_secrets.properties")
-    val botconf: Properties = PropsManager.GetProps("/conf/bot.properties")
+    val shhhhhhhhhhhhhhhhhhhhhhhhhh: Properties = PropsManager.getProps("/conf/bot_secrets.properties")
+    val botconf: Properties = PropsManager.getProps("/conf/bot.properties")
 
     val commandClient: CommandClient = CommandClientBuilder()
         .setPrefixes("pie ", "🥧 ", ":pie: ")
@@ -58,7 +58,7 @@ fun main(args: Array<String>) {
                         m.reactions.find { it.reactionEmote.emoji == "❤" }!!.retrieveUsers()
                             .queue {
                                 r ->
-                                if (r.size > 2) {
+                                if (r.size > 10) {
                                     m.channel.sendMessage("${m.author.asMention}, you have successfully ratioed ${m.referencedMessage!!.author.asMention}")
                                         .queue()
                                     m.delete().queue()

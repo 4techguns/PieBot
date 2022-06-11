@@ -21,7 +21,8 @@ dependencies {
     implementation("net.dv8tion:JDA:$jdaVersion")
     implementation("com.github.minndevelopment:jda-ktx:bf7cd96")
     implementation("ch.qos.logback:logback-classic:1.2.11")
-    implementation("com.github.devoxin:flight:2.0.8")
+    implementation("com.github.Kaktushose:jda-commands:c26704e")
+
     testImplementation(kotlin("test"))
 }
 
