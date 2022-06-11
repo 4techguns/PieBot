@@ -1,5 +1,6 @@
 package com.github.fourtechguns.bot
 
+import com.github.kaktushose.jda.commands.JDACommands
 import dev.minn.jda.ktx.events.listener
 import dev.minn.jda.ktx.jdabuilder.default
 import dev.minn.jda.ktx.jdabuilder.intents
@@ -9,11 +10,8 @@ import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent
 import net.dv8tion.jda.api.requests.GatewayIntent
 import java.util.*
 
-@OptIn(ExperimentalStdlibApi::class)
 fun main(args: Array<String>) {
-    var r: MutableSet<String> = mutableSetOf()
-
-    val shhhhhhhhhhhhhhhhhhhhhhhhhh: Properties = PropsManager.getProps("/conf/bot_secrets.properties")
+val shhhhhhhhhhhhhhhhhhhhhhhhhh: Properties = PropsManager.getProps("/conf/bot_secrets.properties")
     val botconf: Properties = PropsManager.getProps("/conf/bot.properties")
 
     var jda = default(shhhhhhhhhhhhhhhhhhhhhhhhhh.getProperty("token"), enableCoroutines = true)
@@ -24,6 +22,7 @@ fun main(args: Array<String>) {
         )
     }
         .awaitReady()
+
     jda.presence.setPresence(
         Activity.of(
             Activity.ActivityType.COMPETING,
