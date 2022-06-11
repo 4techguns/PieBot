@@ -3,8 +3,6 @@ package com.github.fourtechguns.bot
 import dev.minn.jda.ktx.events.listener
 import dev.minn.jda.ktx.jdabuilder.default
 import dev.minn.jda.ktx.jdabuilder.intents
-import me.devoxin.flight.api.CommandClient
-import me.devoxin.flight.api.CommandClientBuilder
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent
@@ -17,12 +15,6 @@ fun main(args: Array<String>) {
 
     val shhhhhhhhhhhhhhhhhhhhhhhhhh: Properties = PropsManager.getProps("/conf/bot_secrets.properties")
     val botconf: Properties = PropsManager.getProps("/conf/bot.properties")
-
-    val commandClient: CommandClient = CommandClientBuilder()
-        .setPrefixes("pie ", "🥧 ", ":pie: ")
-        .setOwnerIds(752617663888359444)
-        .registerDefaultParsers()
-        .build()
 
     var jda = default(shhhhhhhhhhhhhhhhhhhhhhhhhh.getProperty("token"), enableCoroutines = true)
     {
@@ -37,8 +29,6 @@ fun main(args: Array<String>) {
             Activity.ActivityType.COMPETING,
             "${jda.guilds.size} guilds"),
         false)
-    jda.addEventListener(commandClient)
-    commandClient.commands.register("com.github.fourtechguns.commands")
 
     jda.listener<MessageReceivedEvent> {
         if (it.message.referencedMessage != null && it.message.contentRaw == "ratio")
