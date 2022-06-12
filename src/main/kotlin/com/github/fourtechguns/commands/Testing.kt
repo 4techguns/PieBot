@@ -6,13 +6,16 @@ import com.github.kaktushose.jda.commands.dispatching.CommandEvent
 import dev.minn.jda.ktx.messages.send
 
 @CommandController
-class Testing {
-    @Command(value=["hi"], category = "Testing")
+public class Testing {
+    @Command(
+        value=["hi", "hello", "greetings", "hallo", "konichiwa", "bonjour", "salut"],
+        category = "Testing", desc = "a friendly greeting", usage = "{prefix}hi")
     fun hi(event: CommandEvent) {
         event.reply("hi")
     }
 
-    @Command(value=["ping"], category = "Testing")
+    @Command(value=["ping"], category = "Testing", desc = "what bot doesn't have a ping command?"
+    , usage = "{prefix}ping")
     fun ping(event: CommandEvent) {
         val channel = event.channel
         val time = System.currentTimeMillis()
