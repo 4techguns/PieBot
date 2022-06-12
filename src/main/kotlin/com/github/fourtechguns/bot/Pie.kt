@@ -8,12 +8,7 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent
 
 
-class Pie {
-    val jda: JDA
-
-    constructor(jda: JDA) {
-        this.jda = jda
-    }
+class Pie(val jda: JDA) {
 
     fun start() {
         jda.awaitReady()
@@ -33,17 +28,17 @@ class Pie {
             }
         }
 
-        jda.listener<MessageReactionAddEvent> {
-            if (it.user?.isBot == true) return@listener
+        jda.listener<MessageReactionAddEvent> { re ->
+            if (re.user?.isBot == true) return@listener
 
-            when (it.reactionEmote.emoji)
+            when (re.reactionEmote.emoji)
             {
-                "❤" -> { it.retrieveMessage().queue {m ->
-                            m.reactions.find { it.reactionEmote.emoji == "❤" }!!.retrieveUsers().queue { r ->
+                "❤" -> { re.retrieveMessage().queue {m ->
+                            m.reactions.find { re.reactionEmote.emoji == "❤" }!!.retrieveUsers().queue { r ->
                                     if (r.size > 10) {
                                         m.channel.sendMessage("${m.author.asMention}, you have successfully ratioed ${m.referencedMessage!!.author.asMention}")
-                                            .queue {fm ->
-                                                fm.delete().queue()
+                                            .queue {
+                                                m.delete().queue()
                                             }
 
                                     }
